@@ -11,18 +11,3 @@ main.py                 — запуск алгоритма из командн�
 experiments.py          — мини-эксперименты и CSV-таблица результатов
 tests/test_roundtrip.py — проверка обратимости алгоритмов
 ```
-
-```bash
-python main.py huffman data/example.txt
-python main.py lzw data/example.txt
-python experiments.py
-```
-
-```bash
-git init
-git add .
-git commit -m "Add coursework source code"
-git branch -M main
-git remote add origin https://github.com/<AntReshMan>/lossless-compression-coursework.git
-git push -u origin main
-```
