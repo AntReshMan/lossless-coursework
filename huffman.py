@@ -9,11 +9,8 @@ from typing import Dict, Optional, Tuple
 
 @dataclass
 class Node:
-    """Узел дерева Хаффмана.
+    #Узел дерева Хаффмана.
 
-    Атрибут symbol заполнен только у листьев. Внутренний узел хранит сумму
-    частот двух дочерних поддеревьев и используется при декодировании.
-    """
 
     freq: int
     symbol: Optional[int] = None
@@ -25,11 +22,11 @@ class Node:
 
 
 def build_tree(data: bytes) -> Optional[Node]:
-    """Строит дерево Хаффмана для входной байтовой строки."""
+    #Строит дерево Хаффмана для входной байтовой строки.
     if not data:
         return None
 
-    # heapq хранит минимальную кучу; второй элемент tuple нужен, чтобы узлы
+    # heapq хранит минимальную кучу; второй элемент tuple нужен, чтобы узлы 
     # с одинаковыми частотами сравнивались стабильно и без ошибки TypeError.
     counter = itertools.count()
     heap: list[Tuple[int, int, Node]] = []
@@ -47,7 +44,7 @@ def build_tree(data: bytes) -> Optional[Node]:
 
 
 def make_codes(root: Optional[Node]) -> Dict[int, str]:
-    """Формирует словарь: байт -> битовая строка."""
+    #Формирует словарь: байт -> битовая строка.
     if root is None:
         return {}
 
@@ -68,7 +65,7 @@ def make_codes(root: Optional[Node]) -> Dict[int, str]:
 
 
 def _pack_bits(bit_string: str) -> tuple[bytes, int]:
-    """Упаковывает строку из '0'/'1' в байты и возвращает число полезных битов."""
+    #Упаковывает строку из '0'/'1' в байты и возвращает число полезных битов.
     bit_length = len(bit_string)
     padding = (-bit_length) % 8
     bit_string += "0" * padding
@@ -79,12 +76,12 @@ def _pack_bits(bit_string: str) -> tuple[bytes, int]:
 
 
 def _unpack_bits(payload: bytes, bit_length: int) -> str:
-    """Преобразует упакованные байты обратно в битовую строку."""
+    #Преобразует упакованные байты обратно в битовую строку.
     return "".join(f"{byte:08b}" for byte in payload)[:bit_length]
 
 
 def encode(data: bytes) -> dict:
-    """Кодирует данные и возвращает учебный контейнер с метаданными."""
+    #Кодирует данные и возвращает учебный контейнер с метаданными.
     root = build_tree(data)
     codes = make_codes(root)
     bit_string = "".join(codes[byte] for byte in data)
@@ -99,7 +96,7 @@ def encode(data: bytes) -> dict:
 
 
 def decode(container: dict) -> bytes:
-    """Декодирует контейнер, созданный функцией encode."""
+    #Декодирует контейнер, созданный функцией encode.
     codes = {int(k): v for k, v in container["codes"].items()}
     reverse = {code: symbol for symbol, code in codes.items()}
     bits = _unpack_bits(container["payload"], container["bit_length"])
@@ -115,8 +112,5 @@ def decode(container: dict) -> bytes:
 
 
 def compressed_size_bits(container: dict) -> int:
-    """Оценивает размер сжатого потока с учётом полезных битов полезной нагрузки."""
-    # В промышленном формате нужно компактно хранить дерево/длины кодов.
-    # Здесь метаданные хранятся отдельно, поэтому для сравнения алгоритма
-    # учитываем битовую длину кодированного сообщения.
+    #Оценивает размер сжатого потока с учётом полезных битов полезной нагрузки.
     return int(container["bit_length"])
