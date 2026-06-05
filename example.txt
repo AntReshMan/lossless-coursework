@@ -1,0 +1,2 @@
+ABRACADABRA ABRACADABRA ABRACADABRA
+Сжатие без потерь: от Хаффмана до LZW.
