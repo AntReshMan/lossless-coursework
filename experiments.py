@@ -1,4 +1,3 @@
-"""Запускает мини-эксперименты для раздела курсовой работы."""
 from __future__ import annotations
 
 import csv
