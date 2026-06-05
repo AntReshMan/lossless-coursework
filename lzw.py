@@ -1,21 +1,11 @@
-"""Учебная реализация алгоритма LZW для байтовых строк.
-
-Алгоритм начинает со словаря всех одиночных байтов (0..255), затем добавляет
-новые последовательности по мере чтения входа. Декодер восстанавливает тот же
-словарь синхронно, поэтому словарь не нужно хранить в сжатом файле.
-"""
 from __future__ import annotations
 
 from typing import List
 
 
 def encode(data: bytes, max_code: int = 4095) -> dict:
-    """Кодирует байты в список кодов LZW.
-
-    max_code=4095 соответствует 12-битному словарю, как в классических
-    практических вариантах LZW. При заполнении словаря новые строки перестают
-    добавляться, что упрощает учебную реализацию.
-    """
+    #Кодирует байты в список кодов LZW.
+    
     if not data:
         return {"algorithm": "lzw", "codes": [], "original_size": 0, "code_width": 12}
 
@@ -46,7 +36,7 @@ def encode(data: bytes, max_code: int = 4095) -> dict:
 
 
 def decode(container: dict, max_code: int = 4095) -> bytes:
-    """Восстанавливает исходные байты из списка кодов LZW."""
+    #Восстанавливает исходные байты из списка кодов LZW.
     codes: List[int] = list(container["codes"])
     if not codes:
         return b""
@@ -77,5 +67,5 @@ def decode(container: dict, max_code: int = 4095) -> bytes:
 
 
 def compressed_size_bits(container: dict) -> int:
-    """Оценивает размер LZW-потока при фиксированной ширине кода."""
+    #Оценивает размер LZW-потока при фиксированной ширине кода.
     return len(container["codes"]) * int(container.get("code_width", 12))
