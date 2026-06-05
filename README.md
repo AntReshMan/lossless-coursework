@@ -23,6 +23,6 @@ git init
 git add .
 git commit -m "Add coursework source code"
 git branch -M main
-git remote add origin https://github.com/<username>/lossless-compression-coursework.git
+git remote add origin https://github.com/<AntReshMan>/lossless-compression-coursework.git
 git push -u origin main
 ```
