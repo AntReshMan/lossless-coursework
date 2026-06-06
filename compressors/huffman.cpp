@@ -186,10 +186,6 @@ public:
 
         return result;
     }
-
-    static int compressed_size_bits(const HuffmanContainer& container) {
-        return container.bit_length;
-    }
 };
 
 // Вспомогательные функции для удобства использования
