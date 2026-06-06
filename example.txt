@@ -1,2 +1,3 @@
 ABRACADABRA ABRACADABRA ABRACADABRA
-Сжатие без потерь: от Хаффмана до LZW.
+Compression without loss: from Huffman to LZW.
+EOF
