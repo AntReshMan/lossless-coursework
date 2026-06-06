@@ -186,6 +186,7 @@ public:
 
         return result;
     }
+    int compressed_size_bits(const HuffmanContainer &container);
 };
 
 // Вспомогательные функции для удобства использования
