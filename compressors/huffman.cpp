@@ -201,3 +201,7 @@ HuffmanContainer encode_bytes(const uint8_t* data, size_t size) {
 std::vector<uint8_t> decode_container(const HuffmanContainer& container) {
     return Huffman::decode(container);
 }
+
+int Huffman::compressed_size_bits(const HuffmanContainer& container) {
+    return container.bit_length;
+}
