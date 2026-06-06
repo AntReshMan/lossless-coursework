@@ -7,7 +7,7 @@
 #include "lzw.h"
 
 void test_roundtrip_huffman() {
-    std::string input_str = "пример пример пример: сжатие без потерь";
+    std::string input_str = "example example example";
     std::vector<uint8_t> data(input_str.begin(), input_str.end());
     
     HuffmanContainer packed = Huffman::encode(data);
